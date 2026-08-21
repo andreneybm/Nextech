@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexTech | Tecnología al instante</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#f4f6f9;
+color:#222;
+line-height:1.6;
+}
+header{
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+.logo{
+font-size:32px;
+font-weight:bold;
+}
+.slogan{
+margin-top:5px;
+font-size:14px;
+color:#ddd;
+}
+.volver{
+display:inline-block;
+background:#0d47a1;
+color:white;
+padding:10px 18px;
+border-radius:8px;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+.oculto{
+display:none;
+}
+.contenedor{
+max-width:750px;
+margin:0 auto;
+padding:0 15px;
+}
+.search{
+padding:15px;
+}
+.search input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+font-size:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.menu{
+display:flex;
+overflow:auto;
+background:white;
+padding:10px;
+gap:10px;
+position:sticky;
+top:90px;
+z-index:99;
+}
+.menu button{
+border:none;
+background:#e3f2fd;
+padding:10px 15px;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+white-space:nowrap;
+}
+.menu button:hover, .menu button.activo{
+background:#1565c0;
+color:white;
+}
+.destacada{
+margin:15px 0;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+cursor:pointer;
+}
+.destacada img{
+width:100%;
+height:220px;
+object-fit:cover;
+display:block;
+}
+.destacada h2{
+padding:15px;
+font-size:20px;
+color:#0d47a1;
+}
+.destacada p{
+padding:0 15px 15px;
+color:#555;
+}
+.leer{
+margin:0 15px 15px;
+background:#1565c0;
+color:white;
+border:none;
+padding:12px;
+width:calc(100% - 30px);
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+.leer:hover{
+background:#0d47a1;
+}
+.titulo{
+font-size:22px;
+margin:20px 0 10px;
+color:#333;
+}
+.noticia{
+background:white;
+margin:15px 0;
+padding:15px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+cursor:pointer;
+display:flex;
+gap:12px;
+transition:0.3s;
+}
+.noticia.oculta{
+display:none;
+}
+.noticia img{
+width:80px;
+height:80px;
+border-radius:8px;
+object-fit:cover;
+}
+.info-noticia h3{
+margin-bottom:6px;
+font-size:17px;
+color:#0d47a1;
+}
+.info-noticia p{
+color:#555;
+font-size:14px;
+}
+.pagina-noticia{
+background:white;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+padding:20px;
+margin:15px;
+}
+.pagina-noticia h1{
+color:#0d47a1;
+margin-bottom:10px;
+font-size:24px;
+}
+.fecha{
+color:#666;
+font-size:14px;
+margin-bottom:20px;
+}
+.pagina-noticia img{
+width:100%;
+border-radius:10px;
+margin:15px 0;
+height:250px;
+object-fit:cover;
+}
+.pagina-noticia h3{
+color:#1565c0;
+margin:20px 0 10px;
+}
+.pagina-noticia ul{
+margin-left:20px;
+margin-bottom:15px;
+}
+footer{
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- PANTALLA PRINCIPAL -->
+<div id="paginaPrincipal">
+<header>
+<div class="logo">🚀 NexTech</div>
+<div class="slogan">Tecnología al instante</div>
+</header>
+
+<div class="search">
+<input type="text" id="buscar" placeholder="🔍 Buscar noticias...">
+</div>
+
+<div class="menu">
+<button class="filtro activo" data-categoria="todas">Todas</button>
+<button class="filtro" data-categoria="samsung">Samsung</button>
+<button class="filtro" data-categoria="apple">Apple</button>
+<button class="filtro" data-categoria="android">Android</button>
+<button class="filtro" data-categoria="ia">IA</button>
+<button class="filtro" data-categoria="windows">Windows</button>
+<button class="filtro" data-categoria="gadgets">Gadgets</button>
+<button class="filtro" data-categoria="juegos">Gaming</button>
+</div>
+
+<div class="contenedor">
+<!-- Noticia Destacada -->
+<div class="destacada" data-categoria="samsung android" onclick="abrirNoticia('n1')">
+<img src="https://picsum.photos/id/160/900/450" alt="Samsung Android 17">
+<h2>📱 Samsung prepara Android 17</h2>
+<p>Descubre todos los detalles, novedades y qué dispositivos recibirán esta actualización.</p>
+<button class="leer">Leer noticia completa</button>
+</div>
+
+<h2 class="titulo">🔥 Últimas noticias</h2>
+
+<div class="noticia" data-categoria="ia" onclick="abrirNoticia('n2')">
+<img src="https://picsum.photos/id/1/100/100" alt="Inteligencia Artificial">
+<div class="info-noticia">
+<h3>🤖 Inteligencia Artificial: avances en 2026</h3>
+<p>Todo lo que hace la IA hoy, cómo funciona y para qué te sirve en el día a día.</p>
+</div>
+</div>
+
+<div class="noticia" data-categoria="apple" onclick="abrirNoticia('n3')">
+<img src="https://picsum.photos/id/20/100/100" alt="Apple">
+<div class="info-noticia">
+<h3>🍎 Novedades de Apple: iPhone, iPad y Mac</h3>
+<p>Qué viene para este año, características nuevas y fechas de lanzamiento estimadas.</p>
+</div>
+</div>
+
+<div class="noticia" data-categoria="juegos" onclick="abrirNoticia('n4')">
+<img src="https://picsum.photos/id/137/100/100" alt="Videojuegos">
+<div class="info-noticia">
+<h3>🎮 Videojuegos más esperados de 2026</h3>
+<p>Lista completa de lanzamientos para PlayStation, Xbox, Nintendo y PC.</p>
+</div>
+</div>
+
+<div class="noticia" data-categoria="windows" onclick="abrirNoticia('n5')">
+<img src="https://picsum.photos/id/60/100/100" alt="Windows 12">
+<div class="info-noticia">
+<h3>🪟 Windows 12: todo lo que se sabe</h3>
+<p>Nuevo diseño, funciones, requisitos y cuándo podría llegar.</p>
+</div>
+</div>
+
+<div class="noticia" data-categoria="gadgets" onclick="abrirNoticia('n6')">
+<img src="https://picsum.photos/id/145/100/100" alt="Gadgets">
+<div class="info-noticia">
+<h3>⌚ Gadgets útiles: relojes, auriculares y más</h3>
+<p>Características, ventajas y cuáles son los mejores modelos del momento.</p>
+</div>
+</div>
+</div>
+
+<footer>© 2026 NexTech - Tecnología al instante</footer>
+</div>
+
+<!-- PANTALLA DE NOTICIA COMPLETA -->
+<div id="paginaNoticia" class="oculto">
+<a href="#" class="volver" onclick="volverInicio()">← Volver al inicio</a>
+<div class="pagina-noticia" id="contenidoNoticia"></div>
+<footer>© 2026 NexTech - Tecnología al instante</footer>
+</div>
+
+<script>
+// Toda la información larga de cada noticia
+const noticias = {
+n1: {
+titulo: "📱 Samsung prepara la llegada de Android 17",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Samsung / Android",
+img: "https://picsum.photos/id/160/700/350",
+texto: `
+<p>Samsung es una de las marcas que más se preocupa por mantener actualizados sus celulares y tabletas. Actualmente ya trabaja en la nueva versión de su sistema operativo basado en <strong>Android 17</strong>, que llegará con muchas mejoras para los usuarios.</p>
+
+<h3>🔄 ¿Qué novedades traerá?</h3>
+<ul>
+<li><strong>Interfaz One UI 7.0:</strong> Diseño más limpio, iconos rediseñados, mayor facilidad para cambiar colores, fuentes y organizar las pantallas.</li>
+<li><strong>Mejor rendimiento:</strong> Los celulares irán más rápido, abrirán aplicaciones en menos tiempo y la batería durará bastante más, incluso en modelos de hace 2 o 3 años.</li>
+<li><strong>Seguridad mejorada:</strong> Protección contra virus, permisos más estrictos para las aplicaciones y mayor control sobre tus datos personales.</li>
+<li><strong>Inteligencia Artificial integrada:</strong> Podrás editar fotos borrando objetos no deseados, traducir textos en cualquier idioma, resumir artículos y organizar tus tareas automáticamente.</li>
+<li><strong>Mejoras en pantallas plegables:</strong> Para los celulares que se doblan, habrá más opciones para usar dos aplicaciones al mismo tiempo de forma cómoda.</li>
+</ul>
+
+<h3>📋 ¿Qué dispositivos se actualizarán?</h3>
+<p>Samsung da hasta 4 años de actualizaciones de sistema. Los modelos que seguramente recibirán Android 17 son:</p>
+<ul>
+<li>Serie Galaxy S24, S24+, S24 Ultra y S25</li>
+<li>Galaxy Z Fold 5, Z Fold 6, Z Flip 5 y Z Flip 6</li>
+<li>Serie A: A35, A36, A55, A56 y modelos superiores</li>
+<li>Tabletas Galaxy Tab S9, S10 y Tab A de gama media alta</li>
+</ul>
+
+<h3>📅 Fecha estimada</h3>
+<p>Las pruebas beta comenzarán entre agosto y septiembre de 2026, y la versión final llegará entre octubre y diciembre, primero en los equipos más nuevos y después en el resto.</p>
+`
+},
+
+n2: {
+titulo: "🤖 Inteligencia Artificial: avances y usos en 2026",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Inteligencia Artificial",
+img: "https://picsum.photos/id/1/700/350",
+texto: `
+<p>La inteligencia artificial ya no es cosa del futuro: está en todo lo que usamos a diario. En 2026 ha evolucionado muchísimo y se ha vuelto más rápida, segura y fácil de usar para cualquier persona.</p>
+
+<h3>🚀 ¿Qué puede hacer hoy la IA?</h3>
+<ul>
+<li><strong>Funciona sin internet:</strong> Muchas funciones ya se ejecutan directamente en tu celular o computadora, sin mandar datos a servidores externos, lo que protege tu privacidad.</li>
+<li><strong>Entiende mejor el lenguaje:</strong> Los asistentes virtuales entienden conversaciones largas, recordatorios y preguntas complejas como si hablaras con otra persona.</li>
+<li><strong>Crea contenido:</strong> Escribe textos, hace resúmenes, diseña imágenes, edita videos, compone música y hasta ayuda a escribir código de programación en segundos.</li>
+<li><strong>Ayuda en la salud:</strong> Analiza datos de relojes y pulseras para avisarte si tu ritmo cardíaco o sueño no son normales y darte recomendaciones útiles.</li>
+<li><strong>Seguridad digital:</strong> Detecta correos falsos, intentos de robo de contraseñas y fraudes antes de que te afecten.</li>
+</ul>
+
+<h3>💻 ¿Dónde la usamos sin darnos cuenta?</h3>
+<p>Está en la cámara de tu celular para mejorar las fotos, en las redes sociales para mostrarte lo que te interesa, en los mapas para darte la mejor ruta, en los traductores y hasta en los videojuegos para que los personajes se comporten de forma más realista.</p>
+
+<h3>⚖️ Futuro cercano</h3>
+<p>Los expertos trabajan para que la IA sea más transparente, respete tus datos y sea accesible para todos, sin importar el nivel de conocimientos que tengas de tecnología.</p>
+`
+},
+
+n3: {
+titulo: "🍎 Novedades de Apple: iPhone, iPad y Mac 2026",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Apple",
+img: "https://picsum.photos/id/20/700/350",
+texto: `
+<p>Apple se prepara para sus lanzamientos de finales de 2026, y como siempre, se esperan cambios importantes en diseño, rendimiento y funciones nuevas para todos sus dispositivos.</p>
+
+<h3>📱 Nuevos iPhone</h3>
+<ul>
+<li>Se espera la serie <strong>iPhone 17</strong> con pantallas más brillantes, cámaras con mejor captura de luz nocturna y procesadores más potentes que gastan menos batería.</li>
+<li>Mejoras en la gestión de energía para que la carga dure todo el día y más.</li>
+<li>Nuevas funciones de inteligencia artificial integradas en fotos, mensajes y búsquedas.</li>
+</ul>
+
+<h3>🖥️ iPad y Mac</h3>
+<ul>
+<li>Nuevos modelos de iPad Pro con pantallas de mayor resolución y procesadores M4 y M5 para trabajar y crear contenido profesional.</li>
+<li>MacBook Air y Pro con mejor autonomía, diseños más ligeros y conexiones más rápidas.</li>
+<li>Actualizaciones de sistemas: iOS 18, iPadOS 18 y macOS 15 con cambios en la apariencia y mayor seguridad.</li>
+</ul>
+
+<h3>📅 Fechas estimadas</h3>
+<p>La presentación oficial suele ser en septiembre, y los primeros equipos salen a la venta unas semanas después, llegando a Perú y Latinoamérica poco tiempo después.</p>
+`
+},
+
+n4: {
+titulo: "🎮 Videojuegos más esperados de 2026",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Gaming",
+img: "https://picsum.photos/id/137/700/350",
+texto: `
+<p>Este año el mundo de los videojuegos trae lanzamientos muy esperados, con gráficos increíbles, historias profundas y formas de jugar nuevas para todas las consolas y PC.</p>
+
+<h3>🎮 Principales lanzamientos</h3>
+<ul>
+<li><strong>Juegos de mundo abierto:</strong> Nuevas entregas de sagas famosas, con mapas enormes, mucha libertad para explorar y gráficos que parecen reales.</li>
+<li><strong>Acción y aventura:</strong> Títulos con historias emocionantes, personajes bien desarrollados y mecánicas de juego renovadas.</li>
+<li><strong>Deportes y carreras:</strong> Mejoras en física, inteligencia artificial de los rivales y modos en línea más estables.</li>
+<li><strong>Realidad virtual:</strong> Más juegos compatibles con gafas VR, ofreciendo experiencias inmersivas como si estuvieras adentro del juego.</li>
+</ul>
+
+<h3>🖥️ Plataformas disponibles</h3>
+<p>La mayoría saldrá para PlayStation 5, Xbox Series X/S, Nintendo Switch 2 y computadoras. Muchos también tendrán versiones optimizadas para jugar desde la nube sin necesidad de una consola muy potente.</p>
+
+<h3>💡 Tendencias del año</h3>
+<p>Se sigue apostando por juegos gratuitos con contenido que se actualiza cada cierto tiempo, mejoras en el juego cruzado (amigos de distintas consolas pueden jugar juntos) y mayor atención a la accesibilidad para que cualquier persona pueda disfrutar.</p>
+`
+},
+
+n5: {
+titulo: "🪟 Windows 12: todo lo que se sabe hasta ahora",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Windows",
+img: "https://picsum.photos/id/60/700/350",
+texto: `
+<p>Microsoft ya trabaja en <strong>Windows 12</strong>, la nueva versión de su sistema operativo para computadoras, que promete ser más ligero, rápido y fácil de usar.</p>
+
+<h3>✨ Cambios principales</h3>
+<ul>
+<li><strong>Nuevo diseño:</strong> Menú de inicio renovado, ventanas más modernas, esquinas redondeadas y colores que se adaptan a tu gusto.</li>
+<li><strong>Más ligero:</strong> Funciona bien incluso en computadoras con pocos años de antigüedad, sin consumir tanta memoria ni batería.</li>
+<li><strong>Inteligencia Artificial integrada:</strong> Asistente que te ayuda a buscar archivos, organizar tu escritorio, traducir textos y resolver tareas rápidamente.</li>
+<li><strong>Seguridad reforzada:</strong> Protección contra virus, cifrado automático de archivos y controles más sencillos para cuidar tu información.</li>
+<li><strong>Mejoras en multitarea:</strong> Es más fácil tener varias ventanas abiertas y organizarlas en la pantalla sin que se trabe.</li>
+</ul>
+
+<h3>💻 Requisitos estimados</h3>
+<p>Se espera que sea compatible con procesadores de los últimos 4 o 5 años, con al menos 8 GB de memoria RAM y 64 GB de espacio libre, aunque funcionará mejor con equipos más recientes.</p>
+
+<h3>📅 Fecha estimada</h3>
+<p>Podría llegar a finales de 2026 o principios de 2027, primero en versión de prueba y luego en versión estable para todo el público.</p>
+`
+},
+
+n6: {
+titulo: "⌚ Gadgets útiles: relojes, auriculares y más en 2026",
+fecha: "Publicado: 28 de junio de 2026 | Categoría: Gadgets",
+img: "https://picsum.photos/id/145/700/350",
+texto: `
+<p>Los dispositivos pequeños se han vuelto indispensables para nuestro día a día. Aquí te contamos qué debes saber de los mejores gadgets del momento.</p>
+
+<h3>⌚ Relojes inteligentes</h3>
+<ul>
+<li>Miden frecuencia cardíaca, saturación de oxígeno, calidad del sueño y niveles de estrés.</li>
+<li>Batería que dura de 3 a 7 días según el modelo.</li>
+<li>Resistencia al agua y polvo, ideales para hacer deporte o usar en cualquier clima.</li>
+<li>Reciben llamadas, mensajes y notificaciones sin necesidad de sacar el celular.</li>
+</ul>
+
+<h3>🎧 Auriculares inalámbricos</h3>
+<ul>
+<li>Cancelación de ruido activa: bloquean los sonidos del exterior para escuchar música o hablar sin distracciones.</li>
+<li>Sonido de alta calidad, con bajos potentes y voces claras.</li>
+<li>Batería de hasta 30 horas con su estuche de carga.</li>
+<li>Resistencia al sudor y agua, perfectos para entrenar.</li>
+</ul>
+
+<h3>🔌 Otros gadgets útiles</h3>
+<ul>
+<li>Bandas deportivas: más económicas que los relojes, pero con las funciones básicas de salud.</li>
+<li>Cargadores rápidos y portátiles: para llevar a cualquier lado y cargar el celular en poco tiempo.</li>
+<li>Luces y enchufes inteligentes: para controlar la luz de tu casa desde el celular o con comandos de voz.</li>
+</ul>
+
+<h3>💡 ¿Cuál elegir?</h3>
+<p>Si buscas algo completo, elige relojes y auriculares de marcas reconocidas que tengan actualizaciones por varios años. Si tienes un presupuesto más ajustado, hay opciones muy buenas que cumplen perfecto con lo básico y tienen buena calidad.</p>
+`
+}
+};
+
+// Abrir noticia completa
+function abrirNoticia(id){
+document.getElementById('paginaPrincipal').classList.add('oculto');
+document.getElementById('paginaNoticia').classList.remove('oculto');
+const n = noticias[id];
+document.getElementById('contenidoNoticia').innerHTML = `
+<h1>${n.titulo}</h1>
+<div class="fecha">${n.fecha}</div>
+<img src="${n.img}" alt="${n.titulo}">
+${n.texto}
+`;
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Volver al inicio
+function volverInicio(){
+document.getElementById('paginaNoticia').classList.add('oculto');
+document.getElementById('paginaPrincipal').classList.remove('oculto');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Buscador
+document.getElementById('buscar').addEventListener('input', function(){
+const texto = this.value.toLowerCase();
+document.querySelectorAll('.noticia').forEach(noti => {
+const titulo = noti.querySelector('h3').textContent.toLowerCase();
+noti.classList.toggle('oculta', !titulo.includes(texto));
+});
+});
+
+// Filtro por categorías
+document.querySelectorAll('.filtro').forEach(boton => {
+boton.addEventListener('click', function(){
+document.querySelectorAll('.filtro').forEach(b => b.classList.remove('activo'));
+this.classList.add('activo');
+const cat = this.dataset.categoria;
+document.querySelectorAll('.noticia').forEach(noti => {
+const categorias = noti.dataset.categoria;
+noti.classList.toggle('oculta', cat !== 'todas' && !categorias.includes(cat));
+});
+});
+});
+</script>
+
+</body>
+</html>
